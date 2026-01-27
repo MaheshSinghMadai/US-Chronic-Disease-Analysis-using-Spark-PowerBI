@@ -66,13 +66,13 @@ df_dim_location_clean.show(10)
 
 #Step-3 Optimize aggregation for the large datasets using Partitioning and Caching strategy
 df_filtered_partitioned = df_bronze.filter(f.col('Topic').isin(key_conditions)) \
-    .repartition(50,'StateAbbr')
+    .repartition(50,'LocationAbbr')
 
 df_optimized_aggregation = df_filtered_partitioned.groupBy(
     'LocationDesc',
     'LocationID',
     'Topic',
-    'StateAbbr'
+    'LocationAbbr'
 ).agg(
     f.round(f.avg('DataValue'),2).alias('AvgPrevalance')
 )
@@ -82,3 +82,37 @@ print(f"Number of partitions: {df_optimized_aggregation.rdd.getNumPartitions()}"
 
 # Additional optimization: Cache if reusing
 df_optimized_aggregation.cache()
+
+
+print("\n" + "="*80)
+print("PREPARING GOLD-LAYER TABLES FOR POWER BI")
+print("="*80)
+
+# Fact Table: FactChronicDisease
+print("\n--- Creating Fact Table ---")
+
+fact_chronic_disease = df_bronze.select(
+    f.col('YearStart').alias('Year'),
+    f.col('LocationID'),
+    f.col('Topic'),
+    f.col('Question'),
+    f.col('DataValue').alias('Prevalence'),
+    f.col('StratificationCategory1').alias('StratificationCategory'),
+    f.col('Stratification1').alias('Stratification')
+).filter(
+    f.col('DataValue').isNotNull()
+)
+
+print("Fact table sample:")
+fact_chronic_disease.show(10)
+
+# Dimension Table: DimStratification
+print("\n--- Creating DimStratification Dimension ---")
+
+dim_stratification = df_bronze.select(
+    col('StratificationCategory1').alias('StratificationCategory'),
+    col('Stratification1').alias('Stratification')
+).distinct()
+
+print("DimStratification sample:")
+dim_stratification.show(10)
