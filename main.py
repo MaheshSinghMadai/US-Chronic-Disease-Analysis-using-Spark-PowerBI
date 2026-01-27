@@ -28,13 +28,13 @@ print("="*80)
 print("\n--- Step 1: Filtering and Aggregating by County ---")
 
 # Define key conditions to filter
-key_conditions = ['Diabetes', 'Cardiovascular', 'Obesity', 'Heart disease']
+key_conditions = ['Diabetes', 'Cardiovascular Disease', 'Asthma', 'Heart disease','Cancer']
 
 df_filtered = df_bronze.filter(
     f.col('Topic').isin(key_conditions)
 )
 
-df_country_aggregated = df_filtered.groupBy(
+df_county_aggregated = df_filtered.groupBy(
     'LocationDesc',
     'LocationID',
     'Topic'
@@ -43,7 +43,7 @@ df_country_aggregated = df_filtered.groupBy(
 )
 
 print("Sample of county aggregated data:")
-df_country_aggregated.show(10)
+df_county_aggregated.show(10)
 
 
 #Step 2 : Creating Location dimension table (DimLocation) 
@@ -109,7 +109,6 @@ dim_topic = df_bronze.select(
     'Topic',
     'Question'
 ).distinct()
-dim_topic = dim_topic.withColumn('TopicID', f.monotonically_increasing_id())
 
 
 print("DimTopic sample: ")
@@ -123,41 +122,8 @@ dim_stratification = df_bronze.select(
     f.col('Stratification1').alias('Stratification')
 ).distinct()
 
-dim_stratification = dim_stratification.withColumn(
-    'StratificationID', 
-    f.monotonically_increasing_id()
-)
-
 print("DimStratification sample:")
 dim_stratification.show(10)
-
-
-fact_with_topic = fact_chronic_disease.join(
-    dim_topic,
-    on=['Topic', 'Question'],
-    how='left'
-)
-
-# Join with dim_stratification (use aliases to avoid ambiguity)
-fact_chronic_disease = fact_with_topic.alias('fact').join(
-    dim_stratification.alias('dim'),
-    on=[
-        f.col('fact.StratificationCategory') == f.col('dim.StratificationCategory'),
-        f.col('fact.Stratification') == f.col('dim.Stratification')
-    ],
-    how='left'
-).select(
-    'fact.Year',
-    'fact.LocationID',
-    'fact.TopicID',
-    f.col('dim.StratificationID'),
-    'fact.Prevalence',
-    'fact.Topic',
-    'fact.Question',
-    'fact.StratificationCategory',
-    'fact.Stratification'
-)
-
 
 print("\n--- Saving Gold Layer Tables ---")
 
@@ -166,6 +132,6 @@ save_single_csv(fact_chronic_disease, 'gold', 'fact_chronic_disease')
 save_single_csv(df_dim_location_clean, 'gold', 'dim_location')
 save_single_csv(dim_topic, 'gold', 'dim_topic')
 save_single_csv(dim_stratification, 'gold', 'dim_stratification')
-save_single_csv(df_optimized_aggregation, 'gold', 'fact_country_prevalance')
+save_single_csv(df_optimized_aggregation, 'gold', 'fact_county_prevalance')
 
 print("\nAll Gold layer tables saved successfully!")

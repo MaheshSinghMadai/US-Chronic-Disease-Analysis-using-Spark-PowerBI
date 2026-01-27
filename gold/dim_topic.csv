@@ -1,110 +1,110 @@
-Topic,Question,TopicID
-Chronic Obstructive Pulmonary Disease,"Chronic obstructive pulmonary disease mortality among adults aged 45 years and older, underlying or contributing cause",0
-Cognitive Health and Caregiving,Provided care for a friend or family member in the past month among adults,1
-"Nutrition, Physical Activity, and Weight Status",Consumed fruit less than one time daily among adults,2
-Social Determinants of Health,Food insecure in the past 12 months among households,3
-Cognitive Health and Caregiving,Subjective cognitive decline among adults aged 45 years and older,4
-Cardiovascular Disease,Taking medicine to control high blood pressure among adults with high blood pressure,5
-Arthritis,Severe joint pain among adults with arthritis,6
-Cardiovascular Disease,High cholesterol among adults who have been screened,7
-Immunization,Pneumococcal vaccination among adults aged 65 years and older,8
-Disability,Adults with any disability,9
-Cognitive Health and Caregiving,Provided care for someone with dementia or other cognitive impairment in the past month among adults,10
-Cancer,"Invasive cancer (all sites combined) mortality among all people, underlying cause",11
-Maternal Health,Postpartum checkup among women with a recent live birth,12
-Sleep,Short sleep duration among high school students,13
-"Nutrition, Physical Activity, and Weight Status",Consumed vegetables less than one time daily among high school students,14
-Social Determinants of Health,Lack of reliable transportation in the past 12 months among adults,15
-Oral Health,Visited dentist or other oral health care provider in the past 12 months among children and adolescents aged 1-17 years,16
-Social Determinants of Health,Routine checkup within the past year among adults,17
-Chronic Obstructive Pulmonary Disease,"Hospitalization for chronic obstructive pulmonary disease as principal diagnosis, Medicare-beneficiaries aged 65 years and older",18
-Alcohol,Binge drinking prevalence among adults,19
-Cardiovascular Disease,"Diseases of the heart mortality among all people, underlying cause",20
-Tobacco,Current electronic vapor product use among high school students,21
-Arthritis,Physical inactivity among adults with arthritis,22
-Immunization,Influenza vaccination among adults 18â€“64 who are at increased risk,23
-Oral Health,No teeth lost among adults aged 18-64 years,24
-Social Determinants of Health,High school completion among adults aged 18-24,25
-Tobacco,Current smokeless tobacco use among high school students,26
-Arthritis,Work limitation due to arthritis among adults aged 18-64 years with arthritis,27
-Chronic Kidney Disease,Incidence of treated end-stage kidney disease,28
-Chronic Obstructive Pulmonary Disease,"Hospitalization for chronic obstructive pulmonary disease as any diagnosis, Medicare-beneficiaries aged 65 years and older",29
-"Nutrition, Physical Activity, and Weight Status","Met aerobic physical activity guideline for substantial health benefits, adults",30
-"Nutrition, Physical Activity, and Weight Status",Met aerobic physical activity guideline among high school students,31
-Oral Health,Visited dentist or dental clinic in the past year among adults,32
-Alcohol,Binge drinking intensity among adults who binge drink,33
-Health Status,Life expectancy at birth,34
-Mental Health,Average mentally unhealthy days among adults,35
-Alcohol,Per capita alcohol consumption among people aged 14 years and older,36
-"Nutrition, Physical Activity, and Weight Status",Obesity among high school students,37
-Cancer,"Cervical cancer mortality among all females, underlying cause",38
-Cancer,"Lung and bronchial cancer mortality among all people, underlying cause",39
-Social Determinants of Health,Unemployment rate among people 16 years and older in the labor force,40
-Diabetes,"Diabetic ketoacidosis mortality among all people, underlying or contributing cause",41
-Diabetes,Gestational diabetes among women with a recent live birth,42
-Social Determinants of Health,Living below 150% of the poverty threshold among all people,43
-Immunization,Pneumococcal vaccination among adults aged 18â€“64 years who are at increased risk,44
-Cancer,Mammography use among women aged 50-74 years,45
-Oral Health,Six or more teeth lost among adults aged 65 years and older,46
-"Nutrition, Physical Activity, and Weight Status",Obesity among adults,47
-Cognitive Health and Caregiving,Discussed symptoms of subjective cognitive decline with a health care professional among adults aged 45 years and older with subjective cognitive decline,48
-"Nutrition, Physical Activity, and Weight Status",No leisure-time physical activity among adults,49
-Tobacco,Current tobacco use of any tobacco product among high school students,50
-Diabetes,Diabetes among adults,51
-Alcohol,Alcohol use among high school students,52
-Tobacco,Current cigarette smoking among adults,53
-Cancer,"Breast cancer mortality among all females, underlying cause",54
-Health Status,Frequent physical distress among adults,55
-Cardiovascular Disease,High blood pressure among adults,56
-Arthritis,Received health care provider counseling for physical activity among adults with arthritis,57
-Cardiovascular Disease,"Hospitalization for heart failure as principal diagnosis, Medicare-beneficiaries aged 65 years and older",58
-Oral Health,Receipt of evidence-based preventive dental services in the past 12 months among children and adolescents aged 1-17 years,59
-"Nutrition, Physical Activity, and Weight Status",Children and adolescents aged 6-13 years meeting aerobic physical activity guideline,60
-"Nutrition, Physical Activity, and Weight Status",Consumed regular soda at least one time daily among high school students,61
-Social Determinants of Health,Lack of social and emotional support needed among adults,62
-Mental Health,Depression among adults,63
-Arthritis,Activity limitation due to arthritis among adults with arthritis,64
-Health Status,2 or more chronic conditions among adults,65
-Tobacco,Quit attempts in the past year among adult current smokers,66
-Cancer,"Invasive cancer (all sites combined), incidence",67
-Mental Health,Postpartum depressive symptoms among women with a recent live birth,68
-Arthritis,Arthritis among adults,69
-Social Determinants of Health,"Unable to pay mortgage, rent, or utility bills in the past 12 months among adults",70
-Sleep,Short sleep duration among adults,71
-Alcohol,Binge drinking frequency among adults who binge drink,72
-Health Status,Fair or poor self-rated health status among adults,73
-Chronic Obstructive Pulmonary Disease,Current smoking among adults with chronic obstructive pulmonary disease,74
-"Nutrition, Physical Activity, and Weight Status",Infants who were exclusively breastfed through 6 months,75
-Health Status,Average recent physically unhealthy days among adults,76
-Immunization,Influenza vaccination among adults,77
-Alcohol,Binge drinking prevalence among high school students,78
-Cancer,Colorectal cancer screening among adults aged 45-75 years,79
-Social Determinants of Health,Health insurance coverage after pregnancy among women with a recent live birth,80
-Social Determinants of Health,Lack of health insurance among adults aged 18-64 years,81
-Diabetes,"Diabetes mortality among all people, underlying or contributing cause",82
-Chronic Obstructive Pulmonary Disease,Chronic obstructive pulmonary disease among adults,83
-Alcohol,"Chronic liver disease mortality among all people, underlying cause",84
-Cancer,Cervical cancer screening among women aged 21-65 years,85
-Mental Health,Current poor mental health among high school students,86
-Oral Health,Preventive dental care in the 12 months before pregnancy among women with a recent live birth,87
-Cancer,"Prostate cancer mortality among all males, underlying cause",88
-Cancer,"Colon and rectum (colorectal) cancer mortality among all people, underlying cause",89
-Chronic Obstructive Pulmonary Disease,"Chronic obstructive pulmonary disease mortality among adults aged 45 years and older, underlying cause",90
-"Nutrition, Physical Activity, and Weight Status",Infants who were breastfed at 12 months,91
-Cardiovascular Disease,"Coronary heart disease mortality among all people, underlying cause",92
-Asthma,Current asthma among adults,93
-Social Determinants of Health,No broadband internet subscription among households,94
-Cardiovascular Disease,Taking medicine for high cholesterol among adults,95
-"Nutrition, Physical Activity, and Weight Status",Consumed vegetables less than one time daily among adults,96
-Health Status,Recent activity limitation among adults,97
-Oral Health,All teeth lost among adults aged 65 years and older,98
-Arthritis,Have taken an educational class to learn how to manage arthritis symptoms among adults with arthritis,99
-Sleep,Short sleep duration among children aged 4 months to 14 years,100
-Asthma,"Asthma mortality among all people, underlying cause",101
-Mental Health,Frequent mental distress among adults,102
-"Nutrition, Physical Activity, and Weight Status",Consumed fruit less than one time daily among high school students,103
-Social Determinants of Health,Health insurance coverage in the month before pregnancy among women with a recent live birth,104
-Tobacco,Cigarette smoking during pregnancy among women with a recent live birth,105
-Cardiovascular Disease,"Cerebrovascular disease (stroke) mortality among all people, underlying cause",106
-Tobacco,"Proportion of the population protected by a comprehensive smoke-free policy prohibiting smoking in all indoor areas of workplaces and public places, including restaurants and bars",107
-"Nutrition, Physical Activity, and Weight Status",Obesity among WIC children aged 2 to 4 years,108
+Topic,Question
+Chronic Obstructive Pulmonary Disease,"Chronic obstructive pulmonary disease mortality among adults aged 45 years and older, underlying or contributing cause"
+Cognitive Health and Caregiving,Provided care for a friend or family member in the past month among adults
+"Nutrition, Physical Activity, and Weight Status",Consumed fruit less than one time daily among adults
+Social Determinants of Health,Food insecure in the past 12 months among households
+Cognitive Health and Caregiving,Subjective cognitive decline among adults aged 45 years and older
+Cardiovascular Disease,Taking medicine to control high blood pressure among adults with high blood pressure
+Arthritis,Severe joint pain among adults with arthritis
+Cardiovascular Disease,High cholesterol among adults who have been screened
+Immunization,Pneumococcal vaccination among adults aged 65 years and older
+Disability,Adults with any disability
+Cognitive Health and Caregiving,Provided care for someone with dementia or other cognitive impairment in the past month among adults
+Cancer,"Invasive cancer (all sites combined) mortality among all people, underlying cause"
+Maternal Health,Postpartum checkup among women with a recent live birth
+Sleep,Short sleep duration among high school students
+"Nutrition, Physical Activity, and Weight Status",Consumed vegetables less than one time daily among high school students
+Social Determinants of Health,Lack of reliable transportation in the past 12 months among adults
+Oral Health,Visited dentist or other oral health care provider in the past 12 months among children and adolescents aged 1-17 years
+Social Determinants of Health,Routine checkup within the past year among adults
+Chronic Obstructive Pulmonary Disease,"Hospitalization for chronic obstructive pulmonary disease as principal diagnosis, Medicare-beneficiaries aged 65 years and older"
+Alcohol,Binge drinking prevalence among adults
+Cardiovascular Disease,"Diseases of the heart mortality among all people, underlying cause"
+Tobacco,Current electronic vapor product use among high school students
+Arthritis,Physical inactivity among adults with arthritis
+Immunization,Influenza vaccination among adults 18â€“64 who are at increased risk
+Oral Health,No teeth lost among adults aged 18-64 years
+Social Determinants of Health,High school completion among adults aged 18-24
+Tobacco,Current smokeless tobacco use among high school students
+Arthritis,Work limitation due to arthritis among adults aged 18-64 years with arthritis
+Chronic Kidney Disease,Incidence of treated end-stage kidney disease
+Chronic Obstructive Pulmonary Disease,"Hospitalization for chronic obstructive pulmonary disease as any diagnosis, Medicare-beneficiaries aged 65 years and older"
+"Nutrition, Physical Activity, and Weight Status","Met aerobic physical activity guideline for substantial health benefits, adults"
+"Nutrition, Physical Activity, and Weight Status",Met aerobic physical activity guideline among high school students
+Oral Health,Visited dentist or dental clinic in the past year among adults
+Alcohol,Binge drinking intensity among adults who binge drink
+Health Status,Life expectancy at birth
+Mental Health,Average mentally unhealthy days among adults
+Alcohol,Per capita alcohol consumption among people aged 14 years and older
+"Nutrition, Physical Activity, and Weight Status",Obesity among high school students
+Cancer,"Cervical cancer mortality among all females, underlying cause"
+Cancer,"Lung and bronchial cancer mortality among all people, underlying cause"
+Social Determinants of Health,Unemployment rate among people 16 years and older in the labor force
+Diabetes,"Diabetic ketoacidosis mortality among all people, underlying or contributing cause"
+Diabetes,Gestational diabetes among women with a recent live birth
+Social Determinants of Health,Living below 150% of the poverty threshold among all people
+Immunization,Pneumococcal vaccination among adults aged 18â€“64 years who are at increased risk
+Cancer,Mammography use among women aged 50-74 years
+Oral Health,Six or more teeth lost among adults aged 65 years and older
+"Nutrition, Physical Activity, and Weight Status",Obesity among adults
+Cognitive Health and Caregiving,Discussed symptoms of subjective cognitive decline with a health care professional among adults aged 45 years and older with subjective cognitive decline
+"Nutrition, Physical Activity, and Weight Status",No leisure-time physical activity among adults
+Tobacco,Current tobacco use of any tobacco product among high school students
+Diabetes,Diabetes among adults
+Alcohol,Alcohol use among high school students
+Tobacco,Current cigarette smoking among adults
+Cancer,"Breast cancer mortality among all females, underlying cause"
+Health Status,Frequent physical distress among adults
+Cardiovascular Disease,High blood pressure among adults
+Arthritis,Received health care provider counseling for physical activity among adults with arthritis
+Cardiovascular Disease,"Hospitalization for heart failure as principal diagnosis, Medicare-beneficiaries aged 65 years and older"
+Oral Health,Receipt of evidence-based preventive dental services in the past 12 months among children and adolescents aged 1-17 years
+"Nutrition, Physical Activity, and Weight Status",Children and adolescents aged 6-13 years meeting aerobic physical activity guideline
+"Nutrition, Physical Activity, and Weight Status",Consumed regular soda at least one time daily among high school students
+Social Determinants of Health,Lack of social and emotional support needed among adults
+Mental Health,Depression among adults
+Arthritis,Activity limitation due to arthritis among adults with arthritis
+Health Status,2 or more chronic conditions among adults
+Tobacco,Quit attempts in the past year among adult current smokers
+Cancer,"Invasive cancer (all sites combined), incidence"
+Mental Health,Postpartum depressive symptoms among women with a recent live birth
+Arthritis,Arthritis among adults
+Social Determinants of Health,"Unable to pay mortgage, rent, or utility bills in the past 12 months among adults"
+Sleep,Short sleep duration among adults
+Alcohol,Binge drinking frequency among adults who binge drink
+Health Status,Fair or poor self-rated health status among adults
+Chronic Obstructive Pulmonary Disease,Current smoking among adults with chronic obstructive pulmonary disease
+"Nutrition, Physical Activity, and Weight Status",Infants who were exclusively breastfed through 6 months
+Health Status,Average recent physically unhealthy days among adults
+Immunization,Influenza vaccination among adults
+Alcohol,Binge drinking prevalence among high school students
+Cancer,Colorectal cancer screening among adults aged 45-75 years
+Social Determinants of Health,Health insurance coverage after pregnancy among women with a recent live birth
+Social Determinants of Health,Lack of health insurance among adults aged 18-64 years
+Diabetes,"Diabetes mortality among all people, underlying or contributing cause"
+Chronic Obstructive Pulmonary Disease,Chronic obstructive pulmonary disease among adults
+Alcohol,"Chronic liver disease mortality among all people, underlying cause"
+Cancer,Cervical cancer screening among women aged 21-65 years
+Mental Health,Current poor mental health among high school students
+Oral Health,Preventive dental care in the 12 months before pregnancy among women with a recent live birth
+Cancer,"Prostate cancer mortality among all males, underlying cause"
+Cancer,"Colon and rectum (colorectal) cancer mortality among all people, underlying cause"
+Chronic Obstructive Pulmonary Disease,"Chronic obstructive pulmonary disease mortality among adults aged 45 years and older, underlying cause"
+"Nutrition, Physical Activity, and Weight Status",Infants who were breastfed at 12 months
+Cardiovascular Disease,"Coronary heart disease mortality among all people, underlying cause"
+Asthma,Current asthma among adults
+Social Determinants of Health,No broadband internet subscription among households
+Cardiovascular Disease,Taking medicine for high cholesterol among adults
+"Nutrition, Physical Activity, and Weight Status",Consumed vegetables less than one time daily among adults
+Health Status,Recent activity limitation among adults
+Oral Health,All teeth lost among adults aged 65 years and older
+Arthritis,Have taken an educational class to learn how to manage arthritis symptoms among adults with arthritis
+Sleep,Short sleep duration among children aged 4 months to 14 years
+Asthma,"Asthma mortality among all people, underlying cause"
+Mental Health,Frequent mental distress among adults
+"Nutrition, Physical Activity, and Weight Status",Consumed fruit less than one time daily among high school students
+Social Determinants of Health,Health insurance coverage in the month before pregnancy among women with a recent live birth
+Tobacco,Cigarette smoking during pregnancy among women with a recent live birth
+Cardiovascular Disease,"Cerebrovascular disease (stroke) mortality among all people, underlying cause"
+Tobacco,"Proportion of the population protected by a comprehensive smoke-free policy prohibiting smoking in all indoor areas of workplaces and public places, including restaurants and bars"
+"Nutrition, Physical Activity, and Weight Status",Obesity among WIC children aged 2 to 4 years

@@ -1,27 +1,27 @@
-StratificationCategory,Stratification,StratificationID
-Sex,Female,0
-Overall,Overall,1
-Grade,Grade 11,2
-Age,Age 1-5,3
-Race/Ethnicity,"White, non-Hispanic",4
-Age,Age 12-17,5
-Age,Age 0-44,6
-Race/Ethnicity,"Hawaiian or Pacific Islander, non-Hispanic",7
-Race/Ethnicity,Hispanic,8
-Race/Ethnicity,"American Indian or Alaska Native, non-Hispanic",9
-Age,Age >=65,10
-Age,Age 6-14,11
-Race/Ethnicity,"Asian or Pacific Islander, non-Hispanic",12
-Race/Ethnicity,"Asian, non-Hispanic",13
-Age,Age 45-64,14
-Sex,Male,15
-Race/Ethnicity,"Black, non-Hispanic",16
-Grade,Grade 10,17
-Race/Ethnicity,"Multiracial, non-Hispanic",18
-Age,Age 4 m - 5 y,19
-Age,Age 6-9,20
-Age,Age 10-13,21
-Grade,Grade 9,22
-Grade,Grade 12,23
-Age,Age 6-11,24
-Age,Age 18-44,25
+StratificationCategory,Stratification
+Sex,Female
+Overall,Overall
+Grade,Grade 11
+Age,Age 1-5
+Race/Ethnicity,"White, non-Hispanic"
+Age,Age 12-17
+Age,Age 0-44
+Race/Ethnicity,"Hawaiian or Pacific Islander, non-Hispanic"
+Race/Ethnicity,Hispanic
+Race/Ethnicity,"American Indian or Alaska Native, non-Hispanic"
+Age,Age >=65
+Age,Age 6-14
+Race/Ethnicity,"Asian or Pacific Islander, non-Hispanic"
+Race/Ethnicity,"Asian, non-Hispanic"
+Age,Age 45-64
+Sex,Male
+Race/Ethnicity,"Black, non-Hispanic"
+Grade,Grade 10
+Race/Ethnicity,"Multiracial, non-Hispanic"
+Age,Age 4 m - 5 y
+Age,Age 6-9
+Age,Age 10-13
+Grade,Grade 9
+Grade,Grade 12
+Age,Age 6-11
+Age,Age 18-44
