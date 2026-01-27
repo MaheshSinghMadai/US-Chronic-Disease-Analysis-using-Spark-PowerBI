@@ -1,52 +1,84 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
-import pandas as pd
+from pyspark.sql.window import Window
 
-spark = SparkSession.builder.appName("CDI Session").getOrCreate()
+spark = SparkSession.builder.appName("CDI Session") \
+    .appName("CDC_Chronic_Disease_Transformations") \
+    .config("spark.sql.adaptive.enabled", "true") \
+    .config("spark.sql.adaptive.coalescePartitions.enabled", "true") \
+    .getOrCreate()
+
 spark.sparkContext.setLogLevel("ERROR")
 
-
-
-data = spark.read.option("header", True).option("inferSchema", True) \
+df_bronze = spark.read.option("header", True).option("inferSchema", True) \
 .csv("file:///C:/Users/MrKillShOtzz/source/repos/US Chronic Disease Analysis using Spark and Power BI/US_Chronic_Disease_Indicators.csv")
 
-data.printSchema()
+print("Bronze layer loaded successfully")
+print(f"Total records: {df_bronze.count()}")
+df_bronze.printSchema()
 
-#handle null and empty columns
-total_rows = data.count()
-column_quality = []
-for col_name in data.columns:
-    non_null_count = (
-        data.filter(
-                (f.col(col_name).isNotNull()) & (f.trim(f.col(col_name)) != "")
-            )
-            .count()
-        )  
 
-column_quality.append((col_name, non_null_count))
+# Transformation for Overview Page
 
-df_column_quality = spark.createDataFrame(column_quality, ["column_name","not_null_count"]) \
-    .withColumn("non_null_pct", f.col("not_null_count") / f.lit(total_rows)
+print("\n" + "="*80)
+print("TASK 1: TRANSFORMATIONS FOR OVERVIEW PAGE")
+print("="*80)
+
+# Step 1: Filter for key conditions and aggregate by county
+print("\n--- Step 1: Filtering and Aggregating by County ---")
+
+# Define key conditions to filter
+key_conditions = ['Diabetes', 'Cardiovascular', 'Obesity', 'Heart disease']
+
+df_filtered = df_bronze.filter(
+    f.col('Topic').isin(key_conditions)
 )
 
-df_column_quality.show(truncate=False)
-
-columns_to_drop = df_column_quality.filter(f.col("not_null_count") == 0).select("column_name").rdd.flatMap(lambda x:x).collect()
-data_cleaned = data.drop(columns_to_drop)
-
-
-data_silver = (
-    data_cleaned.select(
-        "LocationDesc",
-        "LocationID",
-        "StateAbbr",
-        "Topic",
-        "DataValue",
-        "YearStart",
-        "StratificationCategory"
-    )
+df_country_aggregated = df_filtered.groupBy(
+    'LocationDesc',
+    'LocationID',
+    'Topic'
+).agg(
+    f.round(f.avg('DataValue'),2).alias('AvgPrevalance')
 )
 
-data_silver = data_silver.filter(
-    f.col("LocationID").isNotNull()
+print("Sample of county aggregated data:")
+df_country_aggregated.show(10)
+
+
+#Step 2 : Creating Location dimension table (DimLocation) 
+
+df_dim_location = df_bronze.select(
+    'LocationID',
+    'LocationDesc',
+    'LocationAbbr'
 )
+
+df_dim_location = df_dim_location.dropDuplicates(['LocationID'])
+
+df_dim_location_clean = df_dim_location.filter(
+    f.col('LocationID').isNotNull() &
+    f.col('LocationDesc').isNotNull()
+)
+
+df_dim_location_clean.show(10)
+
+
+#Step-3 Optimize aggregation for the large datasets using Partitioning and Caching strategy
+df_filtered_partitioned = df_bronze.filter(f.col('Topic').isin(key_conditions)) \
+    .repartition(50,'StateAbbr')
+
+df_optimized_aggregation = df_filtered_partitioned.groupBy(
+    'LocationDesc',
+    'LocationID',
+    'Topic',
+    'StateAbbr'
+).agg(
+    f.round(f.avg('DataValue'),2).alias('AvgPrevalance')
+)
+
+print("\nOptimized aggregation with partitioning:")
+print(f"Number of partitions: {df_optimized_aggregation.rdd.getNumPartitions()}")
+
+# Additional optimization: Cache if reusing
+df_optimized_aggregation.cache()
