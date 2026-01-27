@@ -1,0 +1,56 @@
+LocationDesc,LocationID,Topic,LocationAbbr,AvgPrevalance
+Texas,48,Diabetes,TX,1566.57
+New Hampshire,33,Diabetes,NH,161.49
+South Carolina,45,Diabetes,SC,440.58
+West Virginia,54,Diabetes,WV,281.1
+Arizona,4,Diabetes,AZ,405.38
+Michigan,26,Diabetes,MI,568.21
+Nevada,32,Diabetes,NV,196.24
+Ohio,39,Diabetes,OH,851.78
+Tennessee,47,Diabetes,TN,538.01
+Wisconsin,55,Diabetes,WI,438.86
+Louisiana,22,Diabetes,LA,325.02
+Idaho,16,Diabetes,ID,202.56
+Iowa,19,Diabetes,IA,299.88
+New Mexico,35,Diabetes,NM,182.14
+Minnesota,27,Diabetes,MN,396.77
+Pennsylvania,42,Diabetes,PA,750.08
+Georgia,13,Diabetes,GA,552.11
+California,6,Diabetes,CA,1968.16
+South Dakota,46,Diabetes,SD,157.05
+New Jersey,34,Diabetes,NJ,410.75
+Nebraska,31,Diabetes,NE,196.49
+Connecticut,9,Diabetes,CT,159.91
+Montana,30,Diabetes,MT,127.97
+Massachusetts,25,Diabetes,MA,281.24
+Kansas,20,Diabetes,KS,184.13
+North Carolina,37,Diabetes,NC,594.98
+Vermont,50,Diabetes,VT,150.48
+District of Columbia,11,Diabetes,DC,109.02
+Maryland,24,Diabetes,MD,408.47
+Delaware,10,Diabetes,DE,121.55
+Colorado,8,Diabetes,CO,325.24
+Florida,12,Diabetes,FL,1295.76
+Missouri,29,Diabetes,MO,329.57
+Alaska,2,Diabetes,AK,66.32
+Virgin Islands,78,Diabetes,VI,15.89
+Illinois,17,Diabetes,IL,623.61
+New York,36,Diabetes,NY,858.79
+Oregon,41,Diabetes,OR,317.04
+Maine,23,Diabetes,ME,163.04
+Arkansas,5,Diabetes,AR,260.16
+Oklahoma,40,Diabetes,OK,487.19
+Puerto Rico,72,Diabetes,PR,16.03
+Guam,66,Diabetes,GU,16.11
+North Dakota,38,Diabetes,ND,115.88
+Washington,53,Diabetes,WA,383.33
+United States,59,Diabetes,US,14414.4
+Virginia,51,Diabetes,VA,396.39
+Mississippi,28,Diabetes,MS,393.68
+Utah,49,Diabetes,UT,168.93
+Alabama,1,Diabetes,AL,286.68
+Rhode Island,44,Diabetes,RI,126.75
+Indiana,18,Diabetes,IN,509.2
+Hawaii,15,Diabetes,HI,115.39
+Wyoming,56,Diabetes,WY,111.81
+Kentucky,21,Diabetes,KY,544.27

@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
-from pyspark.sql.window import Window
+from helper.csv_save_helper import save_single_csv
 
 spark = SparkSession.builder.appName("CDI Session") \
     .appName("CDC_Chronic_Disease_Transformations") \
@@ -47,7 +47,6 @@ df_country_aggregated.show(10)
 
 
 #Step 2 : Creating Location dimension table (DimLocation) 
-
 df_dim_location = df_bronze.select(
     'LocationID',
     'LocationDesc',
@@ -60,7 +59,6 @@ df_dim_location_clean = df_dim_location.filter(
     f.col('LocationID').isNotNull() &
     f.col('LocationDesc').isNotNull()
 )
-
 df_dim_location_clean.show(10)
 
 
@@ -106,13 +104,34 @@ fact_chronic_disease = df_bronze.select(
 print("Fact table sample:")
 fact_chronic_disease.show(10)
 
+# Dimension table: Topic
+dim_topic = df_bronze.select(
+    'Topic',
+    'Question'
+).distinct()
+
+print("DimTopic sample: ")
+dim_topic.show(10)
+
 # Dimension Table: DimStratification
 print("\n--- Creating DimStratification Dimension ---")
 
 dim_stratification = df_bronze.select(
-    col('StratificationCategory1').alias('StratificationCategory'),
-    col('Stratification1').alias('Stratification')
+    f.col('StratificationCategory1').alias('StratificationCategory'),
+    f.col('Stratification1').alias('Stratification')
 ).distinct()
 
 print("DimStratification sample:")
 dim_stratification.show(10)
+
+
+print("\n--- Saving Gold Layer Tables ---")
+
+# Save Fact Table
+save_single_csv(fact_chronic_disease, 'gold', 'fact_chronic_disease')
+save_single_csv(df_dim_location_clean, 'gold', 'dim_location')
+save_single_csv(dim_topic, 'gold', 'dim_topic')
+save_single_csv(dim_stratification, 'gold', 'dim_stratification')
+save_single_csv(df_optimized_aggregation, 'gold', 'fact_county_prevalance')
+
+print("\nAll Gold layer tables saved successfully!")
