@@ -16,6 +16,7 @@ class trendsTransformation:
         self.df_yearly_trends_flagged = None
         self.df_national_trends_sorted = None
         self.df_state_trends_sorted = None
+        self.quality_check = None
 
     def run(self):
 
@@ -70,6 +71,42 @@ class trendsTransformation:
         self.df_yearly_trends_with_yoy.orderBy(
             'LocationAbbr', 'Topic', 'YearStart'
         ).show(20)
+        
+
+    def perform_quality_checks(self):
+
+        print("\n" + "="*80)
+        print("STEP 2: DATA QUALITY CHECKS")
+        print("="*80)
+
+        # Register temp view for SQL queries
+        self.df_yearly_trends.createOrReplaceTempView("yearly_trends")
+
+        # Check for incomplete years
+        expected_state_count = self.df_bronze.select('LocationAbbr').distinct().count()
+        print(f"\nExpected state count: {expected_state_count}")
+        
+        incomplete_years = self._check_incomplete_years(expected_state_count)
+        print("\n Years with incomplete data:")
+        if incomplete_years.count() > 0:
+            incomplete_years.show()
+        else:
+            print("None - All years have complete data!")
+        
+        # Comprehensive quality check
+        self.quality_check = self._perform_quality_analysis(expected_state_count)
+        print("\n Data quality summary by year:")
+        self.quality_check.show()
+        
+        # Add quality flags to trends data
+        self.df_yearly_trends_flagged = self.df_yearly_trends_with_yoy.join(
+            self.quality_check.select('YearStart', 'Topic', 'QualityStatus'),
+            on=['YearStart', 'Topic'],
+            how='left'
+        )
+        
+        print("\n Trends data with quality flags (sample):")
+        self.df_yearly_trends_flagged.show(10)
 
     def calculate_national_trends(self):
 
@@ -132,6 +169,12 @@ class trendsTransformation:
             'fact_national_trends'
         )
         
+        # Save quality report
+        save_single_csv(
+            self.quality_check, 
+            self.output_path, 
+            'data_quality_report'
+        )
 
     def _add_yoy_changes(self, df, partition_cols, order_col, value_col):
 
@@ -169,12 +212,30 @@ class trendsTransformation:
             ORDER BY YearStart, Topic
         """)
     
+    def _perform_quality_analysis(self, expected_state_count, record_threshold=1000):
+        return self.spark.sql(f"""
+            SELECT 
+                YearStart,
+                Topic,
+                SUM(RecordCount) as TotalRecords,
+                COUNT(DISTINCT LocationAbbr) as StateCount,
+                CASE 
+                    WHEN SUM(RecordCount) < {record_threshold} THEN 'LOW_RECORDS'
+                    WHEN COUNT(DISTINCT LocationAbbr) < {expected_state_count} THEN 'MISSING_STATES'
+                    ELSE 'VALID'
+                END as QualityStatus
+            FROM yearly_trends
+            GROUP BY YearStart, Topic
+            ORDER BY YearStart, Topic
+        """)
+    
     def _get_results(self):      
         return {
             'fact_state_trends': self.df_state_trends_sorted,
             'fact_national_trends': self.df_national_trends_sorted,
+            'quality_report': self.quality_check
         }
     
-def run(spark, df_bronze, output_path='data/gold'):
+def run(spark, df_bronze, output_path):
     transformer = trendsTransformation(spark, df_bronze, output_path)
     return transformer.run()
