@@ -145,7 +145,7 @@ Illinois,17,Cancer,IL,1956.19
 Illinois,17,Cardiovascular Disease,IL,1891.86
 Illinois,17,Diabetes,IL,623.61
 New York,36,Asthma,NY,29.4
-New York,36,Cardiovascular Disease,NY,2739
+New York,36,Cardiovascular Disease,NY,2739.0
 New York,36,Diabetes,NY,858.79
 Oregon,41,Cardiovascular Disease,OR,485.23
 Illinois,17,Asthma,IL,20.34
@@ -163,7 +163,7 @@ Oklahoma,40,Diabetes,OK,487.19
 Oklahoma,40,Cardiovascular Disease,OK,651.92
 Oklahoma,40,Cancer,OK,616.3
 Oklahoma,40,Asthma,OK,12.98
-Puerto Rico,72,Cardiovascular Disease,PR,51
+Puerto Rico,72,Cardiovascular Disease,PR,51.0
 Puerto Rico,72,Cancer,PR,84571.13
 Puerto Rico,72,Diabetes,PR,16.03
 Puerto Rico,72,Asthma,PR,11.28
@@ -207,7 +207,7 @@ Rhode Island,44,Asthma,RI,13.93
 Indiana,18,Diabetes,IN,509.2
 Indiana,18,Cancer,IN,809.07
 Rhode Island,44,Cancer,RI,275.09
-Wyoming,56,Cancer,WY,180
+Wyoming,56,Cancer,WY,180.0
 Hawaii,15,Cancer,HI,293.43
 Hawaii,15,Cardiovascular Disease,HI,209.69
 Hawaii,15,Diabetes,HI,115.39

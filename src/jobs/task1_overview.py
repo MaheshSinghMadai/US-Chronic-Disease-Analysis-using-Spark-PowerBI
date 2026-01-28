@@ -113,10 +113,10 @@ def run(spark, df_bronze, output_path):
     print("\n--- Saving Gold Layer Tables ---")
 
     # Save Fact Table
-    save_single_csv(fact_chronic_disease, 'gold', 'fact_chronic_disease')
-    save_single_csv(df_dim_location_clean, 'gold', 'dim_location')
-    save_single_csv(dim_topic, 'gold', 'dim_topic')
-    save_single_csv(dim_stratification, 'gold', 'dim_stratification')
-    save_single_csv(df_optimized_aggregation, 'gold', 'fact_county_prevalance')
+    save_single_csv(fact_chronic_disease, output_path, 'fact_chronic_disease')
+    save_single_csv(df_dim_location_clean, output_path, 'dim_location')
+    save_single_csv(dim_topic, output_path, 'dim_topic')
+    save_single_csv(dim_stratification, output_path, 'dim_stratification')
+    save_single_csv(df_optimized_aggregation, output_path, 'fact_county_prevalance')
 
     print("\nAll Gold layer tables saved successfully!")

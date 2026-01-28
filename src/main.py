@@ -1,23 +1,30 @@
 from pyspark.sql import SparkSession
-from jobs import task1_overview
+from jobs import task1_overview, task2_trends_over_time
+from config import PATHS, SPARK_CONFIG, APP_NAME
 
-spark = SparkSession.builder.appName("CDI Session") \
-    .appName("CDC_Chronic_Disease_Transformations") \
-    .config("spark.sql.adaptive.enabled", "true") \
-    .config("spark.sql.adaptive.coalescePartitions.enabled", "true") \
-    .getOrCreate()
+def main():
+    builder = SparkSession.builder.appName(APP_NAME)
+    
+    for key, value in SPARK_CONFIG.items():
+        builder = builder.config(key, value)
+    
+    spark = builder.getOrCreate()
+    spark.sparkContext.setLogLevel("ERROR")
 
-spark.sparkContext.setLogLevel("ERROR")
+    print(PATHS['raw_data'])
+    df_bronze = spark.read.csv(
+        f"file:///{PATHS['raw_data']}", 
+        header=True, 
+        inferSchema=True
+    )
 
-df_bronze = spark.read.option("header", True).option("inferSchema", True) \
-.csv("file:///C:/Users/MrKillShOtzz/source/repos/US Chronic Disease Analysis using Spark and Power BI/data/raw/US_Chronic_Disease_Indicators.csv")
+    # Run task1_overview
+    task1_overview.run(spark, df_bronze, output_path=PATHS['gold_output'])
 
-print("Bronze layer loaded successfully")
-print(f"Total records: {df_bronze.count()}")
-df_bronze.printSchema()
+    # Run task2_trends_over_time    
+    task2_trends_over_time.run(spark, df_bronze, output_path=PATHS['gold_output'])
 
+    spark.stop()
 
-# Run task1_overview
-task1_overview.run(spark, df_bronze, 'data/gold')
-
-spark.stop()
+if __name__ == "__main__":
+    main()
