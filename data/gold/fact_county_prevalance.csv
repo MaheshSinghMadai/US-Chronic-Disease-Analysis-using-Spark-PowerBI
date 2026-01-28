@@ -1,0 +1,221 @@
+LocationDesc,LocationID,Topic,LocationAbbr,AvgPrevalance
+Texas,48,Cancer,TX,2979.4
+New Hampshire,33,Cancer,NH,431.13
+New Hampshire,33,Asthma,NH,13.3
+New Hampshire,33,Cardiovascular Disease,NH,338.58
+Texas,48,Cardiovascular Disease,TX,2931.87
+Texas,48,Diabetes,TX,1566.57
+New Hampshire,33,Diabetes,NH,161.49
+Texas,48,Asthma,TX,26.73
+West Virginia,54,Cancer,WV,556.04
+Arizona,4,Cancer,AZ,912.98
+South Carolina,45,Cancer,SC,894.12
+Arizona,4,Asthma,AZ,15.05
+Michigan,26,Cardiovascular Disease,MI,1652.09
+South Carolina,45,Diabetes,SC,440.58
+West Virginia,54,Asthma,WV,14.83
+West Virginia,54,Cardiovascular Disease,WV,543.92
+West Virginia,54,Diabetes,WV,281.1
+Arizona,4,Diabetes,AZ,405.38
+South Carolina,45,Cardiovascular Disease,SC,847.77
+Michigan,26,Asthma,MI,17.14
+Michigan,26,Cancer,MI,1566.59
+Arizona,4,Cardiovascular Disease,AZ,812.38
+Michigan,26,Diabetes,MI,568.21
+South Carolina,45,Asthma,SC,12.37
+Nevada,32,Cardiovascular Disease,NV,443.77
+Nevada,32,Diabetes,NV,196.24
+Nevada,32,Cancer,NV,324.94
+Nevada,32,Asthma,NV,10.36
+Ohio,39,Asthma,OH,19.2
+Ohio,39,Cardiovascular Disease,OH,2081.58
+Ohio,39,Cancer,OH,1945.28
+Ohio,39,Diabetes,OH,851.78
+Tennessee,47,Asthma,TN,14.44
+Tennessee,47,Diabetes,TN,538.01
+Tennessee,47,Cardiovascular Disease,TN,1253.72
+Tennessee,47,Cancer,TN,1212.41
+Wisconsin,55,Cancer,WI,829.88
+Wisconsin,55,Cardiovascular Disease,WI,849.74
+Wisconsin,55,Diabetes,WI,438.86
+Wisconsin,55,Asthma,WI,16.02
+Louisiana,22,Cancer,LA,821.09
+Louisiana,22,Diabetes,LA,325.02
+Louisiana,22,Cardiovascular Disease,LA,841.1
+Louisiana,22,Asthma,LA,10.13
+Idaho,16,Diabetes,ID,202.56
+Iowa,19,Cancer,IA,624.31
+Minnesota,27,Cancer,MN,839.85
+New Mexico,35,Cancer,NM,334.97
+Idaho,16,Cardiovascular Disease,ID,291.32
+Iowa,19,Asthma,IA,11.5
+Iowa,19,Cardiovascular Disease,IA,562.68
+Iowa,19,Diabetes,IA,299.88
+New Mexico,35,Diabetes,NM,182.14
+Idaho,16,Cancer,ID,373.01
+Minnesota,27,Asthma,MN,13.33
+Minnesota,27,Cardiovascular Disease,MN,589.66
+New Mexico,35,Asthma,NM,10.18
+New Mexico,35,Cardiovascular Disease,NM,327.47
+Idaho,16,Asthma,ID,10.84
+Minnesota,27,Diabetes,MN,396.77
+California,6,Cancer,CA,4173.51
+Georgia,13,Cancer,GA,1452.44
+Georgia,13,Cardiovascular Disease,GA,1389.81
+Pennsylvania,42,Cardiovascular Disease,PA,2311.86
+Pennsylvania,42,Diabetes,PA,750.08
+Pennsylvania,42,Asthma,PA,20.15
+Georgia,13,Asthma,GA,15.92
+Georgia,13,Diabetes,GA,552.11
+Pennsylvania,42,Cancer,PA,2274.39
+California,6,Asthma,CA,35.1
+California,6,Cardiovascular Disease,CA,3629.53
+California,6,Diabetes,CA,1968.16
+New Jersey,34,Cancer,NJ,1412.66
+South Dakota,46,Cancer,SD,246.44
+Nebraska,31,Cancer,NE,378.85
+Connecticut,9,Cardiovascular Disease,CT,566.9
+Nebraska,31,Cardiovascular Disease,NE,281.84
+New Jersey,34,Asthma,NJ,16.75
+New Jersey,34,Cardiovascular Disease,NJ,1560.59
+South Dakota,46,Asthma,SD,9.55
+South Dakota,46,Diabetes,SD,157.05
+New Jersey,34,Diabetes,NJ,410.75
+Connecticut,9,Asthma,CT,12.03
+Nebraska,31,Diabetes,NE,196.49
+South Dakota,46,Cardiovascular Disease,SD,218.4
+Connecticut,9,Cancer,CT,634.89
+Connecticut,9,Diabetes,CT,159.91
+Nebraska,31,Asthma,NE,9.89
+Massachusetts,25,Cancer,MA,1063.07
+Massachusetts,25,Cardiovascular Disease,MA,938.83
+Montana,30,Asthma,MT,12.68
+Montana,30,Cardiovascular Disease,MT,236.14
+Montana,30,Diabetes,MT,127.97
+Massachusetts,25,Asthma,MA,14.55
+Massachusetts,25,Diabetes,MA,281.24
+Montana,30,Cancer,MT,302.26
+Kansas,20,Cancer,KS,502.56
+Kansas,20,Diabetes,KS,184.13
+Kansas,20,Cardiovascular Disease,KS,422.58
+Kansas,20,Asthma,KS,11.88
+North Carolina,37,Cancer,NC,1559.78
+North Carolina,37,Cardiovascular Disease,NC,1387.85
+North Carolina,37,Diabetes,NC,594.98
+North Carolina,37,Asthma,NC,15.22
+Vermont,50,Cancer,VT,246.25
+District of Columbia,11,Cancer,DC,167.99
+District of Columbia,11,Cardiovascular Disease,DC,166.42
+Vermont,50,Cardiovascular Disease,VT,211.88
+Vermont,50,Diabetes,VT,150.48
+District of Columbia,11,Asthma,DC,12.53
+District of Columbia,11,Diabetes,DC,109.02
+Vermont,50,Asthma,VT,14.27
+Maryland,24,Diabetes,MD,408.47
+Maryland,24,Asthma,MD,12.82
+Maryland,24,Cardiovascular Disease,MD,826.35
+Maryland,24,Cancer,MD,891.07
+Colorado,8,Cancer,CO,673.46
+Florida,12,Cancer,FL,3359.01
+Delaware,10,Asthma,DE,10.98
+Delaware,10,Cardiovascular Disease,DE,241.33
+Delaware,10,Diabetes,DE,121.55
+Florida,12,Asthma,FL,24.84
+Florida,12,Cardiovascular Disease,FL,3808.72
+Colorado,8,Diabetes,CO,325.24
+Colorado,8,Asthma,CO,12.12
+Delaware,10,Cancer,DE,272.3
+Colorado,8,Cardiovascular Disease,CO,503.25
+Florida,12,Diabetes,FL,1295.76
+Missouri,29,Diabetes,MO,329.57
+Missouri,29,Cardiovascular Disease,MO,1044.82
+Missouri,29,Cancer,MO,1064.2
+Missouri,29,Asthma,MO,12.65
+Alaska,2,Asthma,AK,10.96
+Virgin Islands,78,Cardiovascular Disease,VI,44.39
+Virgin Islands,78,Cancer,VI,54.04
+Alaska,2,Cardiovascular Disease,AK,109.81
+Alaska,2,Cancer,AK,164.44
+Alaska,2,Diabetes,AK,66.32
+Virgin Islands,78,Asthma,VI,7.91
+Virgin Islands,78,Diabetes,VI,15.89
+New York,36,Cancer,NY,2770.13
+Oregon,41,Cancer,OR,701.51
+Illinois,17,Cancer,IL,1956.19
+Illinois,17,Cardiovascular Disease,IL,1891.86
+Illinois,17,Diabetes,IL,623.61
+New York,36,Asthma,NY,29.4
+New York,36,Cardiovascular Disease,NY,2739
+New York,36,Diabetes,NY,858.79
+Oregon,41,Cardiovascular Disease,OR,485.23
+Illinois,17,Asthma,IL,20.34
+Oregon,41,Diabetes,OR,317.04
+Oregon,41,Asthma,OR,13.77
+Arkansas,5,Cancer,AR,626.55
+Maine,23,Cancer,ME,435.9
+Maine,23,Diabetes,ME,163.04
+Arkansas,5,Cardiovascular Disease,AR,643.81
+Maine,23,Cardiovascular Disease,ME,351.33
+Arkansas,5,Diabetes,AR,260.16
+Maine,23,Asthma,ME,14.7
+Arkansas,5,Asthma,AR,10.56
+Oklahoma,40,Diabetes,OK,487.19
+Oklahoma,40,Cardiovascular Disease,OK,651.92
+Oklahoma,40,Cancer,OK,616.3
+Oklahoma,40,Asthma,OK,12.98
+Puerto Rico,72,Cardiovascular Disease,PR,51
+Puerto Rico,72,Cancer,PR,84571.13
+Puerto Rico,72,Diabetes,PR,16.03
+Puerto Rico,72,Asthma,PR,11.28
+Guam,66,Cardiovascular Disease,GU,41.61
+Guam,66,Diabetes,GU,16.11
+Guam,66,Cancer,GU,55.74
+Guam,66,Asthma,GU,5.94
+North Dakota,38,Diabetes,ND,115.88
+Washington,53,Asthma,WA,14.89
+Washington,53,Cardiovascular Disease,WA,726.98
+Washington,53,Diabetes,WA,383.33
+North Dakota,38,Cancer,ND,185.68
+Washington,53,Cancer,WA,963.86
+North Dakota,38,Cardiovascular Disease,ND,188.78
+North Dakota,38,Asthma,ND,10.47
+United States,59,Cancer,US,26407.24
+United States,59,Cardiovascular Disease,US,39702.12
+United States,59,Diabetes,US,14414.4
+Virginia,51,Cardiovascular Disease,VA,1114.46
+Virginia,51,Diabetes,VA,396.39
+United States,59,Asthma,US,278.89
+Virginia,51,Asthma,VA,14.88
+Virginia,51,Cancer,VA,1143.63
+Mississippi,28,Cancer,MS,649.13
+Mississippi,28,Asthma,MS,11.02
+Mississippi,28,Cardiovascular Disease,MS,723.24
+Mississippi,28,Diabetes,MS,393.68
+Utah,49,Cancer,UT,386.81
+Alabama,1,Asthma,AL,12.3
+Alabama,1,Cardiovascular Disease,AL,975.73
+Utah,49,Asthma,UT,11.16
+Utah,49,Cardiovascular Disease,UT,281.73
+Utah,49,Diabetes,UT,168.93
+Alabama,1,Cancer,AL,920.52
+Alabama,1,Diabetes,AL,286.68
+Indiana,18,Asthma,IN,14.14
+Indiana,18,Cardiovascular Disease,IN,1066.2
+Rhode Island,44,Cardiovascular Disease,RI,256.82
+Rhode Island,44,Diabetes,RI,126.75
+Rhode Island,44,Asthma,RI,13.93
+Indiana,18,Diabetes,IN,509.2
+Indiana,18,Cancer,IN,809.07
+Rhode Island,44,Cancer,RI,275.09
+Wyoming,56,Cancer,WY,180
+Hawaii,15,Cancer,HI,293.43
+Hawaii,15,Cardiovascular Disease,HI,209.69
+Hawaii,15,Diabetes,HI,115.39
+Wyoming,56,Cardiovascular Disease,WY,154.29
+Wyoming,56,Diabetes,WY,111.81
+Kentucky,21,Diabetes,KY,544.27
+Wyoming,56,Asthma,WY,11.15
+Kentucky,21,Asthma,KY,12.05
+Kentucky,21,Cancer,KY,974.07
+Hawaii,15,Asthma,HI,10.02
+Kentucky,21,Cardiovascular Disease,KY,936.52
