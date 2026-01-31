@@ -3,7 +3,6 @@ import shutil
 import glob
 
 def save_single_csv(dataframe, output_path, filename):
-    """Save Spark DataFrame as single CSV file"""
     temp_dir = f"{output_path}_temp"
     
     # Write to temp directory with single partition
