@@ -19,7 +19,7 @@ def main():
     )
 
     # Run task1_overview
-    task1_overview.run(spark, df_bronze, output_path=PATHS['gold_output'])
+    task1_overview.run_overview_transformation(spark, df_bronze, output_path=PATHS['gold_output'])
 
     # Run task2_trends_over_time    
     task2_trends_over_time.run(spark, df_bronze, output_path=PATHS['gold_output'])
