@@ -2,7 +2,7 @@ from pyspark.sql import functions as f
 from pyspark.sql import Window
 from helper.csv_save_helper import save_single_csv
 
-class trendsTransformation:
+class TrendsTransformation:
     def __init__(self, spark, df_bronze, output_path):
         self.spark = spark
         self.df_bronze = df_bronze
@@ -35,7 +35,7 @@ class trendsTransformation:
         print("TASK 2 COMPLETE - Trends data ready for Power BI!")
         print("="*80)
         
-        return self._get_results()
+        return self.get_results()
 
     def calculate_yearly_trends_with_yoy(self):
 
@@ -60,7 +60,7 @@ class trendsTransformation:
 
         # Calculate Year-over-Year changes
         print("\nCalculating Year-over-Year changes...")
-        self.df_yearly_trends_with_yoy = self._add_yoy_changes(
+        self.df_yearly_trends_with_yoy = self.add_yoy_changes(
             self.df_yearly_trends,
             partition_cols=['Topic', 'LocationAbbr'],
             order_col='YearStart',
@@ -86,7 +86,7 @@ class trendsTransformation:
         expected_state_count = self.df_bronze.select('LocationAbbr').distinct().count()
         print(f"\nExpected state count: {expected_state_count}")
         
-        incomplete_years = self._check_incomplete_years(expected_state_count)
+        incomplete_years = self.check_incomplete_years(expected_state_count)
         print("\n Years with incomplete data:")
         if incomplete_years.count() > 0:
             incomplete_years.show()
@@ -94,7 +94,7 @@ class trendsTransformation:
             print("None - All years have complete data!")
         
         # Comprehensive quality check
-        self.quality_check = self._perform_quality_analysis(expected_state_count)
+        self.quality_check = self.perform_quality_analysis(expected_state_count)
         print("\n Data quality summary by year:")
         self.quality_check.show()
         
@@ -125,7 +125,7 @@ class trendsTransformation:
         
         # Calculate YoY changes for national trends
         print("\nCalculating Year-over-Year changes for national data...")
-        df_national_trends_with_yoy = self._add_yoy_changes(
+        df_national_trends_with_yoy = self.add_yoy_changes(
             df_national_trends,
             partition_cols=['Topic'],
             order_col='YearStart',
@@ -176,7 +176,7 @@ class trendsTransformation:
             'data_quality_report'
         )
 
-    def _add_yoy_changes(self, df, partition_cols, order_col, value_col):
+    def add_yoy_changes(self, df, partition_cols, order_col, value_col):
 
         window_spec = Window.partitionBy(*partition_cols).orderBy(order_col)
         
@@ -194,7 +194,7 @@ class trendsTransformation:
             )
         )
     
-    def _check_incomplete_years(self, expected_state_count):
+    def check_incomplete_years(self, expected_state_count):
         return self.spark.sql(f"""
             SELECT 
                 YearStart,
@@ -212,7 +212,7 @@ class trendsTransformation:
             ORDER BY YearStart, Topic
         """)
     
-    def _perform_quality_analysis(self, expected_state_count, record_threshold=1000):
+    def perform_quality_analysis(self, expected_state_count, record_threshold=1000):
         return self.spark.sql(f"""
             SELECT 
                 YearStart,
@@ -229,7 +229,7 @@ class trendsTransformation:
             ORDER BY YearStart, Topic
         """)
     
-    def _get_results(self):      
+    def get_results(self):      
         return {
             'fact_state_trends': self.df_state_trends_sorted,
             'fact_national_trends': self.df_national_trends_sorted,
@@ -237,5 +237,5 @@ class trendsTransformation:
         }
     
 def run(spark, df_bronze, output_path):
-    transformer = trendsTransformation(spark, df_bronze, output_path)
+    transformer = TrendsTransformation(spark, df_bronze, output_path)
     return transformer.run()
