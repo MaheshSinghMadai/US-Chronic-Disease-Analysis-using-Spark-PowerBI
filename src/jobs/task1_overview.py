@@ -13,6 +13,7 @@ class OverviewTransformation:
         self.fact_chronic_disease = None
         self.df_dim_location_clean = None
         self.dim_topic = None
+        self.dim_year = None
         self.dim_stratification = None
         self.fact_county_prevalance = None
         self.df_optimized_aggregation = None
@@ -92,7 +93,7 @@ class OverviewTransformation:
 
     def create_dimensions(self):
         
-        #Step 2 : Creating Location, Topic and Stratification
+        #Step 2 : Creating Location, Topic, Year and Stratification
         df_dim_location = self.df_bronze.select(
             'LocationID',
             'LocationDesc',
@@ -108,7 +109,7 @@ class OverviewTransformation:
         self.df_dim_location_clean = df_dim_location
         df_dim_location.show(10)
 
-        # Dimension table: Topic
+        # Topic Dimension
         dim_topic = self.df_bronze.select(
             'Topic',
             'Question'
@@ -119,7 +120,8 @@ class OverviewTransformation:
         print("DimTopic sample: ")
         dim_topic.show(10)
 
-        # Dimension Table: DimStratification
+
+        # Stratification Dimension
         print("\n--- Creating DimStratification Dimension ---")
 
         dim_stratification = self.df_bronze.select(
@@ -131,6 +133,28 @@ class OverviewTransformation:
 
         print("DimStratification sample:")
         dim_stratification.show(10)
+
+
+        # Year Dimension
+        print("\n--- Creating Year Dimension ---")
+
+        dim_year = (
+        self.df_bronze
+            .select(
+                f.col("YearStart").alias("YearStart"),
+                f.to_date(
+                    f.concat_ws("-", f.col("YearStart"), f.lit("01"), f.lit("01"))
+                ).alias("Date")
+            )
+            .distinct()
+        )
+
+        dim_year = dim_year.withColumn("Year", f.year(f.col("Date")))
+
+        self.dim_year = dim_year
+
+        print("Year :")
+        dim_year.show(10)
 
 
     def create_fact_table(self):
@@ -168,6 +192,7 @@ class OverviewTransformation:
         save_single_csv(self.dim_topic, self.output_path, 'dim_topic')
         save_single_csv(self.dim_stratification, self.output_path, 'dim_stratification')
         save_single_csv(self.df_optimized_aggregation, self.output_path, 'fact_county_prevalance')
+        save_single_csv(self.dim_year, self.output_path, 'dim_year')
 
         print("\nAll Gold layer tables saved successfully!")
 
@@ -177,7 +202,8 @@ class OverviewTransformation:
                 'fact_county_prevalance':self.fact_county_prevalance,
                 'dim_location': self.df_dim_location_clean,
                 'dim_topic': self.dim_topic,
-                'dim_stratifcation': self.dim_stratification
+                'dim_stratifcation': self.dim_stratification,
+                'dim_year': self.dim_year
         }
     
 def run_overview_transformation(spark, df_bronze, output_path):
