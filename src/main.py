@@ -22,7 +22,7 @@ def main():
     task1_overview.run_overview_transformation(spark, df_bronze, output_path=PATHS['gold_output'])
 
     # Run task2_trends_over_time    
-    task2_trends_over_time.run(spark, df_bronze, output_path=PATHS['gold_output'])
+    task2_trends_over_time.run_trend_transformation(spark, df_bronze, output_path=PATHS['gold_output'])
 
     spark.stop()
 

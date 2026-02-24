@@ -19,7 +19,6 @@ class TrendsTransformation:
         self.quality_check = None
 
     def run(self):
-
         print("\n" + "="*80)
         print("TASK 2: TRANSFORMATIONS FOR TRENDS OVER TIME PAGE")
         print("="*80)
@@ -236,6 +235,6 @@ class TrendsTransformation:
             'quality_report': self.quality_check
         }
     
-def run(spark, df_bronze, output_path):
+def run_trend_transformation(spark, df_bronze, output_path):
     transformer = TrendsTransformation(spark, df_bronze, output_path)
     return transformer.run()

@@ -19,7 +19,6 @@ class OverviewTransformation:
         self.df_optimized_aggregation = None
     
     def run(self):
-
         print("\n" + "="*80)
         print("TASK 1: TRANSFORMATIONS FOR OVERVIEW PAGE")
         print("="*80)
@@ -119,7 +118,6 @@ class OverviewTransformation:
 
         print("DimTopic sample: ")
         dim_topic.show(10)
-
 
         # Stratification Dimension
         print("\n--- Creating DimStratification Dimension ---")
