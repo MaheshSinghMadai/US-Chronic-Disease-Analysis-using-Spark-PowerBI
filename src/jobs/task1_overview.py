@@ -27,6 +27,8 @@ class OverviewTransformation:
         # Execute pipeline steps
         self.aggregate_Data()
         df_optimized = self.optimize_aggregation()
+        self.quality_check_missing_by_county()
+        self.attach_quality_flags_to_county_fact()
         self.create_dimensions()
         self.create_fact_table()
         self.fact_county_prevalance = df_optimized
