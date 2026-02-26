@@ -1,3 +1,4 @@
 *.pdf/
 .pyc/
 __pycache__/
+gold_temp/

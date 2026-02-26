@@ -42,8 +42,7 @@ class OverviewTransformation:
         return self.get_results()
 
 
-    def aggregate_Data(self):
-        
+    def aggregate_Data(self):     
         # Step 1: Filter for key conditions and aggregate by county
         print("\n--- Step 1: Filtering and Aggregating by County ---")
 
@@ -109,9 +108,9 @@ class OverviewTransformation:
         print("\n--- Creating DimLocation (dedupe + null handling) ---")
 
         base = self.df_bronze.select(
-            "LocationID",
-            "LocationDesc",
-            f.col("LocationAbbr").alias("StateAbbr")
+            f.col("LocationID").cast("string").alias("LocationID"),
+            f.col("LocationDesc").cast("string").alias("LocationDesc"),
+            f.col("LocationAbbr").cast("string").alias("StateAbbr")     
         )
 
         # Score rows: prefer non-null desc and state, and longer descriptions (often better)
