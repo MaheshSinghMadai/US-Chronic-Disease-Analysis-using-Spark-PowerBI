@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from jobs import task1_overview, task2_trends_over_time
+from jobs import task1_overview, task2_trends_over_time, task3_disparities, task4_risk_factor
 from config import PATHS, SPARK_CONFIG, APP_NAME
 
 def main():
@@ -23,6 +23,12 @@ def main():
 
     # Run task2_trends_over_time    
     task2_trends_over_time.run_trend_transformation(spark, df_bronze, output_path=PATHS['gold_output'])
+
+    # Run task3_disparities
+    task3_disparities.run_disparities_transformation(spark, df_bronze, output_path=PATHS['gold_output'])
+
+    # Run task4_risk_factor   
+    task4_risk_factor.run_risk_factors_transformation(spark, df_bronze, output_path=PATHS['gold_output'])
 
     spark.stop()
 
