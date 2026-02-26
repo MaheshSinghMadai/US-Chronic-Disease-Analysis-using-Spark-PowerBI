@@ -1,6 +1,6 @@
 from pyspark.sql import functions as f
 from pyspark.sql import Window
-from helper.csv_save_helper import save_single_csv
+from helper.parquet_save_helper import save_single_parquet
 
 class TrendsTransformation:
     def __init__(self, spark, df_bronze, output_path):
@@ -107,6 +107,7 @@ class TrendsTransformation:
         print("\n Trends data with quality flags (sample):")
         self.df_yearly_trends_flagged.show(10)
 
+
     def calculate_national_trends(self):
 
         print("\n" + "="*80)
@@ -155,21 +156,21 @@ class TrendsTransformation:
         print("\n--- Saving Trends Data to Gold Layer ---")
         
         # Save state-level trends
-        save_single_csv(
+        save_single_parquet(
             self.df_state_trends_sorted, 
             self.output_path, 
             'fact_state_trends'
         )
         
         # Save national trends
-        save_single_csv(
+        save_single_parquet(
             self.df_national_trends_sorted, 
             self.output_path, 
             'fact_national_trends'
         )
         
         # Save quality report
-        save_single_csv(
+        save_single_parquet(
             self.quality_check, 
             self.output_path, 
             'data_quality_report'

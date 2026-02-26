@@ -1,6 +1,7 @@
 from pyspark.sql import functions as f
-from helper.csv_save_helper import save_single_csv
+from helper.parquet_save_helper import save_single_parquet
 from pyspark.storagelevel import StorageLevel
+from pyspark.sql.window import Window
 
 class OverviewTransformation:
     def __init__(self, spark, df_bronze, output_path):
@@ -89,24 +90,62 @@ class OverviewTransformation:
         df_optimized_aggregation.show(10)
 
         return df_optimized_aggregation
+    
+    
+    def attach_quality_flags_to_county_fact(self):
+        print("\n--- Attaching missing-data flags to county prevalence fact ---")
 
-    def create_dimensions(self):
+        qc = self.df_quality_county_missing.select("LocationID", "Topic", "MissingPct", "FlagMissingGt20Pct")
+
+        self.df_optimized_aggregation = (self.df_optimized_aggregation
+            .join(qc, on=["LocationID", "Topic"], how="left")
+        )
+        return self.df_optimized_aggregation
+
+
+    def create_dim_location_clean(self):
+        print("\n--- Creating DimLocation (dedupe + null handling) ---")
+
+        base = self.df_bronze.select(
+            "LocationID",
+            "LocationDesc",
+            f.col("LocationAbbr").alias("StateAbbr")
+        )
+
+        # Score rows: prefer non-null desc and state, and longer descriptions (often better)
+        scored = (base
+            .withColumn("HasDesc", f.when(f.col("LocationDesc").isNotNull(), 1).otherwise(0))
+            .withColumn("HasState", f.when(f.col("StateAbbr").isNotNull(), 1).otherwise(0))
+            .withColumn("DescLen", f.length(f.col("LocationDesc")))
+        )
+
+        w = Window.partitionBy("LocationID").orderBy(
+            f.desc("HasDesc"), f.desc("HasState"), f.desc("DescLen")
+        )
+
+        dim_location = (scored
+            .withColumn("rn", f.row_number().over(w))
+            .filter(f.col("rn") == 1)
+            .drop("rn", "HasDesc", "HasState", "DescLen")
+            .filter(f.col("LocationID").isNotNull())   # must have key
+        )
+
+        # Optional: if some locations still have null desc, you can fill with LocationID
+        dim_location = dim_location.withColumn(
+            "LocationDesc",
+            f.coalesce(f.col("LocationDesc"), f.col("LocationID"))
+        )
+
+        self.df_dim_location_clean = dim_location
+        dim_location.show(10, truncate=False)
+        return dim_location
+
+
+    def create_dimensions(self):   
+        #Step 2 : Creating Location, Topic, Year and Stratification   
         
-        #Step 2 : Creating Location, Topic, Year and Stratification
-        df_dim_location = self.df_bronze.select(
-            'LocationID',
-            'LocationDesc',
-            'LocationAbbr'
-        )
-
-        df_dim_location = df_dim_location.dropDuplicates(['LocationID'])
-
-        df_dim_location = df_dim_location.filter(
-            f.col('LocationID').isNotNull() &
-            f.col('LocationDesc').isNotNull()
-        )
-        self.df_dim_location_clean = df_dim_location
-        df_dim_location.show(10)
+        #Location dimension
+        self.create_dim_location_clean()
 
         # Topic Dimension
         dim_topic = self.df_bronze.select(
@@ -180,17 +219,39 @@ class OverviewTransformation:
         print("Fact table sample:")
         fact_chronic_disease.show(10)
 
+    
+    def quality_check_missing_by_county(self):
+        print("\n--- Quality Check: Missing DataValue > 20% (by county + topic) ---")
+
+        df_key = self.df_bronze.filter(f.col("Topic").isin(self.key_conditions))
+
+        qc = (df_key
+            .groupBy("LocationID", "Topic")
+            .agg(
+                f.count("*").alias("TotalRows"),
+                f.sum(f.when(f.col("DataValue").isNull(), 1).otherwise(0)).alias("MissingRows")
+            )
+            .withColumn("MissingPct", f.round((f.col("MissingRows") / f.col("TotalRows")) * 100, 2))
+            .withColumn("FlagMissingGt20Pct", f.col("MissingPct") > f.lit(20.0))
+        )
+
+        self.df_quality_county_missing = qc
+
+        print("Flagged sample:")
+        qc.filter(f.col("FlagMissingGt20Pct") == True).show(20, truncate=False)
+        return qc
+
 
     def save_to_gold_layer(self):
         print("\n--- Saving Gold Layer Tables ---")
 
         # Save Fact Table
-        save_single_csv(self.fact_chronic_disease, self.output_path, 'fact_chronic_disease')
-        save_single_csv(self.df_dim_location_clean, self.output_path, 'dim_location')
-        save_single_csv(self.dim_topic, self.output_path, 'dim_topic')
-        save_single_csv(self.dim_stratification, self.output_path, 'dim_stratification')
-        save_single_csv(self.df_optimized_aggregation, self.output_path, 'fact_county_prevalance')
-        save_single_csv(self.dim_year, self.output_path, 'dim_year')
+        save_single_parquet(self.fact_chronic_disease, self.output_path, 'fact_chronic_disease')
+        save_single_parquet(self.df_dim_location_clean, self.output_path, 'dim_location')
+        save_single_parquet(self.dim_topic, self.output_path, 'dim_topic')
+        save_single_parquet(self.dim_stratification, self.output_path, 'dim_stratification')
+        save_single_parquet(self.df_optimized_aggregation, self.output_path, 'fact_county_prevalance')
+        save_single_parquet(self.dim_year, self.output_path, 'dim_year')
 
         print("\nAll Gold layer tables saved successfully!")
 
