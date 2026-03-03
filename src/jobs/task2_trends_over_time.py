@@ -7,7 +7,6 @@ class TrendsTransformation:
         self.spark = spark
         self.df_bronze = df_bronze
         self.output_path = output_path
-        self.key_conditions = ['Diabetes', 'Cardiovascular Disease', 'Asthma', 'Heart disease','Cancer']
 
         # Store intermediate results
         self.df_trends = None
@@ -42,13 +41,10 @@ class TrendsTransformation:
         print("STEP 1: TIME-SERIES AGGREGATIONS WITH YoY CHANGE")
         print("="*80)
 
-        self.df_trends = self.df_bronze.filter(
-            f.col('Topic').isin(self.key_conditions)
-        )
 
         # Aggregate by Year, Topic, and State
         print("\nAggregating by Year, Topic, and State...")
-        self.df_yearly_trends = self.df_trends.groupBy(
+        self.df_yearly_trends = self.df_bronze.groupBy(
             'YearStart',
             'Topic',
             'LocationAbbr'
@@ -115,7 +111,7 @@ class TrendsTransformation:
         print("="*80)
 
         print("\nAggregating national trends (averaging across all states)...")
-        df_national_trends = self.df_trends.groupBy(
+        df_national_trends = self.df_bronze.groupBy(
             'YearStart',
             'Topic'
         ).agg(
@@ -180,19 +176,30 @@ class TrendsTransformation:
 
         window_spec = Window.partitionBy(*partition_cols).orderBy(order_col)
         
-        return df.withColumn(
+        # calculate previous year value and YoY change, guarding against divide-by-zero
+        df_with_prev = df.withColumn(
             'PrevYearPrevalence',
             f.lag(value_col, 1).over(window_spec)
-        ).withColumn(
+        )
+
+        df_with_change = df_with_prev.withColumn(
             'YoY_Change',
             f.round(f.col(value_col) - f.col('PrevYearPrevalence'), 2)
-        ).withColumn(
+        )
+
+        # use conditional expression to avoid dividing by zero; Spark 3.2+ also supports try_divide
+        df_final = df_with_change.withColumn(
             'YoY_ChangePercent',
             f.round(
-                ((f.col(value_col) - f.col('PrevYearPrevalence')) / f.col('PrevYearPrevalence')) * 100,
+                f.when(
+                    (f.col('PrevYearPrevalence').isNotNull()) & (f.col('PrevYearPrevalence') != 0),
+                    ((f.col(value_col) - f.col('PrevYearPrevalence')) / f.col('PrevYearPrevalence')) * 100
+                ).otherwise(None),
                 2
             )
         )
+
+        return df_final
     
     def check_incomplete_years(self, expected_state_count):
         return self.spark.sql(f"""

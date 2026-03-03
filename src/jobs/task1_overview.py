@@ -8,7 +8,6 @@ class OverviewTransformation:
         self.spark = spark
         self.df_bronze = df_bronze
         self.output_path = output_path
-        self.key_conditions = ['Diabetes','Cardiovascular Disease','Asthma', 'Heart disease','Cancer']
 
         # Final Gold outputs only
         self.fact_chronic_disease = None
@@ -46,11 +45,7 @@ class OverviewTransformation:
         # Step 1: Filter for key conditions and aggregate by county
         print("\n--- Step 1: Filtering and Aggregating by County ---")
 
-        filtered = self.df_bronze.filter(
-            f.col('Topic').isin(self.key_conditions)
-        )
-
-        self.county_aggregated = filtered.groupBy(
+        self.county_aggregated = self.df_bronze.groupBy(
             'LocationDesc',
             'LocationID',
             'Topic'
@@ -67,7 +62,6 @@ class OverviewTransformation:
 
         df_filtered = (
             self.df_bronze
-            .filter(f.col('Topic').isin(self.key_conditions))
             .repartition(50, 'LocationAbbr')
         )
 
@@ -224,9 +218,7 @@ class OverviewTransformation:
     def quality_check_missing_by_county(self):
         print("\n--- Quality Check: Missing DataValue > 20% (by county + topic) ---")
 
-        df_key = self.df_bronze.filter(f.col("Topic").isin(self.key_conditions))
-
-        qc = (df_key
+        qc = (self.df_bronze
             .groupBy("LocationID", "Topic")
             .agg(
                 f.count("*").alias("TotalRows"),
