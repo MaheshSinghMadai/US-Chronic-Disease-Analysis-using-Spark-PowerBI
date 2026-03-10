@@ -125,22 +125,29 @@ This will:
 ### Main Pipeline (`src/main.py`)
 - Initializes Spark session
 - Loads raw CSV data
-- Orchestrates task execution
-- Manages Spark lifecycle
+- Orchestrates task execution across jobs
+- Manages Spark lifecycle and writes to gold layer
 
 ### Task 1: Overview Analysis (`src/jobs/task1_overview.py`)
-- Generates summary statistics
-- Creates aggregated views of chronic disease data
-- Outputs dimension and fact tables
+- Generates summary statistics and basic aggregations
+- Creates dimension tables and the core fact table
 
 ### Task 2: Trends Over Time (`src/jobs/task2_trends_over_time.py`)
 - Analyzes temporal patterns in disease indicators
 - Identifies national and state-level trends
-- Produces time-series fact tables
+- Produces time-series fact tables for trends
 
-### Helper Functions (`src/helper/csv_save_helper.py`)
-- Utilities for saving Spark DataFrames to CSV format
-- Handles output formatting and file management
+### Task 3: Disparities Analysis (`src/jobs/task3_disparities.py`)
+- Examines demographic disparities in disease prevalence
+- Generates pivoted facts for equity dashboards
+
+### Task 4: Risk Factor Correlation (`src/jobs/task4_risk_factor.py`)
+- Correlates risk factors with chronic conditions
+- Produces risk–condition pairing reports
+
+### Helper Functions (`src/helper/parquet_save_helper.py`)
+- Utilities for writing Spark DataFrames to Parquet format
+- Ensures consistent save options and directory handling
 
 ## Output
 
