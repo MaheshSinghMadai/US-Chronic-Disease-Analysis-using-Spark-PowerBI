@@ -10,13 +10,13 @@ This project processes raw US Chronic Disease Indicators data using PySpark to c
 
 The following dashboard screenshots illustrate different views of the project data:
 
-![Overview 1](images/US Chronic Disease_page-0001.jpg)
+![Overview 1](images/overview1.jpg)
 
-![Overview 2](images/US Chronic Disease_page-0002.jpg)
+![Overview 2](images/overview2.jpg)
 
-![Overview 3](images/US Chronic Disease_page-0003.jpg)
+![Overview 3](images/overview3.jpg)
 
-![Overview 4](images/US Chronic Disease_page-0004.jpg)
+![Overview 4](images/overview4.jpg)
 
 
 
