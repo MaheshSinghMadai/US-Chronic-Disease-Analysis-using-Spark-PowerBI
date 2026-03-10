@@ -29,23 +29,34 @@ The following dashboard screenshots illustrate different views of the project da
 ├── data/
 │   ├── raw/
 │   │   └── US_Chronic_Disease_Indicators.csv    # Raw source data
-│   └── gold/
-│       ├── data_quality_report.csv              # Data quality metrics
-│       ├── dim_location.csv                     # Location dimension table
-│       ├── dim_stratification.csv               # Stratification dimension table
-│       ├── dim_topic.csv                        # Disease topic dimension table
-│       ├── fact_chronic_disease.csv             # Main fact table
-│       ├── fact_county_prevalance.csv           # County-level prevalence facts
-│       ├── fact_national_trends.csv             # National trend facts
-│       └── fact_state_trends.csv                # State-level trend facts
+│   ├── gold_temp/                              # staging area for intermediate output
+│   │   └── _SUCCESS etc.
+│   └── gold/                                   # final processed data (Parquet)
+│       ├── data_quality_report.parquet         # Data quality metrics
+│       ├── quality_disparities_report.parquet  # Disparity-specific QA
+│       ├── quality_risk_join_report.parquet    # Risk factor QA
+│       ├── risk_condition_correlation.parquet  # Analysis output
+│       ├── dim_location.parquet                # Location dimension table
+│       ├── dim_stratification.parquet          # Stratification dimension table
+│       ├── dim_topic.parquet                   # Disease topic dimension table
+│       ├── dim_demographic.parquet             # Demographic dimension
+│       ├── dim_year.parquet                    # Year dimension table
+│       ├── fact_chronic_disease.parquet        # Main fact table
+│       ├── fact_county_prevalance.parquet      # County-level prevalence facts
+│       ├── fact_state_trends.parquet           # State-level trend facts
+│       ├── fact_national_trends.parquet        # National trend facts
+│       ├── fact_disparities_pivot.parquet      # Pivoted disparities analysis
+│       ├── fact_risk_condition_pairs.parquet   # Risk factor pairings
 └── src/
     ├── config.py                     # Configuration and path settings
     ├── main.py                       # Main ETL pipeline entry point
     ├── helper/
-    │   └── csv_save_helper.py        # Utility functions for saving CSVs
+    │   └── parquet_save_helper.py    # Utility functions for saving Parquet files
     └── jobs/
         ├── task1_overview.py         # Overview/aggregation analysis
-        └── task2_trends_over_time.py # Temporal trend analysis
+        ├── task2_trends_over_time.py # Temporal trend analysis
+        ├── task3_disparities.py      # Disparities and equity analysis
+        └── task4_risk_factor.py      # Risk factor correlation reporting
 ```
 
 ## Data Model
@@ -54,15 +65,24 @@ The following dashboard screenshots illustrate different views of the project da
 - **dim_location**: Geographic information (counties, states)
 - **dim_stratification**: Demographic stratification (age, gender, race, etc.)
 - **dim_topic**: Disease categories and health indicators
+- **dim_demographic**: Additional demographic attributes and categories
+- **dim_year**: Calendar year lookup table used for time analysis
 
 ### Fact Tables
 - **fact_chronic_disease**: Core fact table with measurements and indicators
 - **fact_county_prevalance**: County-level prevalence data
 - **fact_national_trends**: Aggregated national-level trends
 - **fact_state_trends**: State-level trend analysis
+- **fact_disparities_pivot**: Pivoted facts for disparity/equity dashboards
+- **fact_risk_condition_pairs**: Risk factor and condition pairing analysis
 
-### Quality Assurance
-- **data_quality_report.csv**: Data validation and quality metrics
+### Quality Assurance & Reports
+- **data_quality_report.parquet**: General data validation and quality metrics
+- **quality_disparities_report.parquet**: QA metrics specific to disparity calculations
+- **quality_risk_join_report.parquet**: Quality checks for risk-factor joins
+- **risk_condition_correlation.parquet**: Analytical output showing correlation between risk factors and conditions
+
+> All gold‑layer datasets are written as Parquet files for efficient downstream consumption.
 
 ## Getting Started
 
