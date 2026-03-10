@@ -7,7 +7,17 @@ A comprehensive data analysis project leveraging Apache Spark for ETL and data p
 This project processes raw US Chronic Disease Indicators data using PySpark to create clean, aggregated datasets (gold layer) suitable for analysis and visualization. The pipeline includes data quality assessments, trend analysis over time, and structured dimensions and facts for business intelligence.
 
 ### Overview Dashboard
-![US Chronic Disease_page-0001](https://github.com/user-attachments/assets/210cbe99-3bd5-4cfd-a315-650d672eeb4b)
+
+The following dashboard screenshots illustrate different views of the project data:
+
+![Overview 1](images/US Chronic Disease_page-0001.jpg)
+
+![Overview 2](images/US Chronic Disease_page-0002.jpg)
+
+![Overview 3](images/US Chronic Disease_page-0003.jpg)
+
+![Overview 4](images/US Chronic Disease_page-0004.jpg)
+
 
 
 
